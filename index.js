@@ -4,9 +4,8 @@ const app = express();
 
 const{ ourENVport } = require('./config/db')
 const { signupRouter } = require("./routes/signup.routes");
+const { loginRouter } = require("./routes/login.routes");
 const cors = require("cors");
-
-app.use(express.urlencoded({extended :true}));
 app.use(express.json())
 app.use(
   cors({
@@ -17,6 +16,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to bug-tracker");
 });
 app.use("/signup", signupRouter);
+app.use("/login", loginRouter);
+
 
 app.listen(process.env.port, async ()=>{
     try {
